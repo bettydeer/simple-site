@@ -34,19 +34,13 @@ app.get("/quote", function (req, res){
  res.send(quotes[randomIndex]);
 });
 
-var jokes = [
- { setup: "What's the difference between a guitar and a fish?",
-   punchline: "You can't tuna fish." },
- { setup: "What do you get when you cross a cow and a duck?",
-   punchline: "Milk and quackers." },
- { setup: "How many tickles does it take to make an octupus laugh?",
-   punchline: "Ten Tickles" }
-];
+var jokes = require('./lib/jokes');
 
 app.get("/joke", function(req, res) {
  var randomIndex = Math.floor(Math.random() * jokes.length);
- res.json(jokes[randomIndex]);
+ res.json(jokes());
 });
+
 app.listen(port, function(){
   console.log('app started on port', port);
 
